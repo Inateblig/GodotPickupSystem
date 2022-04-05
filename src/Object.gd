@@ -1,15 +1,20 @@
 extends Spatial
 
+var knbd = KinematicBody.new()
+var rgbd = RigidBody.new()
+
 func _init():
 	add_to_group("obj")
 
-func set_kndb(_vel, bd: Object, knbdscript):
-	self.replace_by(bd)
-	self.set_script(knbdscript)
+func set_kndb(_vel, knbd, rgbd, knbdscript):
+	rgbd.replace_by(knbd)
+	rgbd.queue_free()
+	knbd.set_script(knbdscript)
 
-func set_rgdb(bd, rgbdscript):
-	self.replace_by(bd)
-	self.set_script(rgbdscript)
+func set_rgdb(knbd, rgbd, rgbdscript):
+	knbd.replace_by(rgbd)
+	knbd.queue_free()
+	rgbd.set_script(rgbdscript)
 
 func pick_up(vel: Vector3, knbd: Object):
 	if knbd.is_inside_tree():

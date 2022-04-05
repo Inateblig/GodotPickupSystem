@@ -1,6 +1,6 @@
 extends "res://Object.gd"
 
-func init():
+func _init():
 	add_to_group("obj")
 	print(get_name())
-	self.name = "Object"
+	name = "Object"

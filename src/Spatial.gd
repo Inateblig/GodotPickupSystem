@@ -17,26 +17,30 @@ var set_rgbd_hase = false
 var knbdscript = preload("res://Knbd.gd")
 var rgdbscript = preload("res://Rgbd.gd")
 
-onready var object = get_tree().get_nodes_in_group("obj")[0]
+onready var object = $Object
+
 func _physics_process(_dt):
+
 	if Input.is_action_pressed("pickup"):
-#		object = get_node("Object")
-		var vel = ($Player/Head/Camera/Position3D.global_transform.origin - object.global_transform.origin)
-#		print(object.global_transform.origin)
+		var tarpos = $Player/Head/Camera/Position3D.global_transform.origin
+		var objpos = object.global_transform.origin
+		var vel = object.to_local(tarpos)
+		object.move_and_slide(vel * 100, Vector3.UP)
 		if !set_knbd_hase:
 			if object == null:
 				object = get_node("@@2")
 			print(object)
 			set_knbd_hase = true
 			set_rgbd_hase = false
-			object.set_kndb(vel, knbd, knbdscript)
+			object.set_kndb(vel, knbd, rgbd, knbdscript)
 		object.pick_up(vel, knbd)
-#		print(object)
-	elif Input.is_action_just_released("pickup"):
-		print("dropped")
-		if !set_rgbd_hase:
-			set_knbd_hase = false
-			set_rgbd_hase = true
-			object.set_rgdb(rgbd, rgdbscript)
+		print(object.global_transform.origin)
+		print(object)
+#	elif Input.is_action_just_released("pickup"):
+#		print("dropped")
+#		if !set_rgbd_hase:
+#			set_knbd_hase = false
+#			set_rgbd_hase = true
+#			object.set_rgdb(knbd, rgbd, rgdbscript)
 
 
