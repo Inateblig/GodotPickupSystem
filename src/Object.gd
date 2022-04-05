@@ -1,5 +1,8 @@
 extends Spatial
 
+func _init():
+	add_to_group("obj")
+
 func set_kndb(_vel, bd: Object, knbdscript):
 	self.replace_by(bd)
 	self.set_script(knbdscript)
