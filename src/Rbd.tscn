@@ -4,7 +4,7 @@
 
 [sub_resource type="CubeMesh" id=2]
 
-[node name="Rbd" type="RigidBody"]
+[node name="Rbd" type="RigidBody" groups=["obj"]]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )

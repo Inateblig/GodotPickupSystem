@@ -4,7 +4,7 @@
 
 [sub_resource type="CubeMesh" id=4]
 
-[node name="Kbd" type="KinematicBody"]
+[node name="Kbd" type="KinematicBody" groups=["obj"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
