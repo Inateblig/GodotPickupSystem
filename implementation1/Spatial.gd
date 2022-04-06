@@ -15,14 +15,14 @@ func _physics_process(_dt):
 			if !col.is_in_group("obj"):
 				drop()
 			elif col.is_in_group("obj"):
-				pickup(Kbd, Rbd)
+				pickup()
 		else:
 			drop()
 	if Input.is_action_just_released("pickup"):
 		drop()
 	a += 1
 
-func pickup(_Kbd, _Rbd):
+func pickup():
 	if get_node_or_null("Rbd") != null:
 		$Rbd.queue_free()
 	if get_node_or_null("Kbd") == null:
@@ -30,11 +30,7 @@ func pickup(_Kbd, _Rbd):
 		add_child(kin)
 		$Kbd.global_transform.origin = tarpos
 	var vel = $Kbd.to_local(tarpos)
-	var mac = $Kbd.move_and_collide(vel, true, true, true)
 	vel = lerp(pvel, vel * 100, 0.4)
-	if mac != null:
-		print(mac.collider)
-		vel = Vector3.ZERO
 	$Kbd.move_and_slide(vel, Vector3.UP)
 	pvel = vel
 	ptarpos = tarpos
