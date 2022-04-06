@@ -24,13 +24,11 @@ func _physics_process(dt):
 
 
 func get_force(_dt) -> Vector3:
-	var z: float = (
-		Input.get_action_strength("d") - Input.get_action_strength("e")
-	)
-	var x: float = (
-		Input.get_action_strength("f") - Input.get_action_strength("s")
-	)
-	var y: float
+	var x: float = 0
+	var y: float = 0
+	var z: float = 0
+	z += Input.get_axis("e", "d")
+	x += Input.get_axis("s", "f")
 	if is_on_floor():
 		y = 0
 	else:
